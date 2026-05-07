@@ -1,9 +1,9 @@
 # MATA59-TrabalhoSemestral20261
-# 🚀 Checklist de Homologação: HackInSDN
+# 🚀 Checklist para apresentação da etapa 4 do trabalho semestral.
 
-Bem-vindos à etapa prática! A transição da arquitetura desenhada no papel para a linha de comando exige muita atenção aos detalhes e aos fundamentos de redes. 
+Bem-vindos à etapa prática! A transição da arquitetura desenhada no PDF para a linha de comando exige atenção aos detalhes e aos fundamentos de redes. 
 
-Utilize este checklist para homologar a infraestrutura da sua equipe antes da apresentação oficial. Marque as tarefas concluídas (`[x]`) conforme avança.
+Utilize este checklist para homologar a infraestrutura da sua equipe antes da apresentação.
 
 ---
 
@@ -13,7 +13,7 @@ A topologia do laboratório é a nossa infraestrutura física imutável. O traba
 
 - [ ] O escopo da rede faz sentido para o seu caso de uso? 
 - [ ] O diagrama lógico está devidamente documentado com os IPs, nomes fictícios e as portas de serviço que cada nó vai utilizar?
-- [ ] A topologia original do laboratório foi estritamente mantida (sem nós extras ou links removidos)?
+- [ ] A topologia original do laboratório foi mantida (sem nós extras ou links removidos)?
 
 ---
 
@@ -25,7 +25,7 @@ A internet não funciona à base de IPs memorizados. A exigência aqui é a impl
   <details>
   <summary>💡 Dica de Validação</summary>
   
-  > Testem a resolução a partir dos clientes usando ferramentas de consulta, como `dig [nome-do-servidor]` ou `nslookup`. Garantam que o arquivo `/etc/resolv.conf` dos clientes esteja apontando para o IP do novo servidor DNS de vocês.
+  > Testem a resolução a partir dos clientes usando ferramentas de consulta, como `dig [nome-do-servidor]` ou `nslookup`. Garantam que o arquivo `/etc/resolv.conf` dos clientes esteja apontando para o IP do servidor DNS de vocês.
   </details>
 
 - [ ] Os dois serviços que o seu caso de uso vai prover estão devidamente instalados e em estado de escuta (`LISTEN`) nas portas corretas?
@@ -39,7 +39,7 @@ A internet não funciona à base de IPs memorizados. A exigência aqui é a impl
 
 ## 🚚 3. Camada de Transporte (Análise de Comportamento)
 
-Esta etapa exige comprovação empírica em tela das características do TCP e do UDP .
+Esta etapa exige comprovação em tela das características do TCP e do UDP .
 
 - [ ] A equipe tem domínio sobre o uso de analisadores de pacotes em modo texto?
   <details>
@@ -49,7 +49,7 @@ Esta etapa exige comprovação empírica em tela das características do TCP e d
   </details>
 
 - [ ] **A Prova do TCP:** Conseguimos capturar o início de uma conexão e mostrar claramente o *3-way handshake* (pacotes `SYN`, `SYN-ACK`, `ACK`) ocorrendo antes da transferência dos dados da aplicação?
-- [ ] **A Prova do UDP:** Conseguimos capturar uma carga de tráfego contínuo da sua aplicação e demonstrar na captura que o servidor despacha datagramas em massa, sem aguardar respostas de confirmação do receptor?
+- [ ] **A Prova do UDP:** Conseguimos capturar uma carga de tráfego UDP na sua aplicação e demonstrar na captura que o servidor despacha datagramas sem aguardar respostas de confirmação do receptor?
 
 ---
 
@@ -73,12 +73,8 @@ Aqui testamos a segurança do perímetro e a segmentação interna. As regras de
 
 A ponte entre o endereço lógico (IP) e o endereço físico da placa de rede (MAC).
 
-- [ ] Após realizar um ping ou acessar um serviço de uma máquina na mesma rede local, a equipe consegue exibir a tabela ARP e explicar o que aconteceu nos bastidores?
-  <details>
-  <summary>💡 Dica de Comando</summary>
-  
-  > O comando tradicional é o `arp -n`, ou `ip neigh show` para sistemas Linux mais modernos. A equipe deve ser capaz de explicar por que o MAC Address de destino muda quando o pacote vai para a internet, mas permanece o do destino final quando a comunicação é na rede local.
-  </details>
+- [ ] Após realizar um ping ou acessar um serviço de uma máquina na mesma rede local, a equipe consegue exibir a tabela ARP e explicar o que aconteceu?
+
 
 ---
-*Testem a exaustão. Derrubem conexões, analisem os logs e observem o comportamento dos pacotes. Uma demonstração de redes bem-sucedida é aquela em que a equipe sabe exatamente o caminho que a informação fez, desde o fio até a aplicação.*
+*Testem bastante. Derrubem conexões, analisem os logs e observem o comportamento dos pacotes. Uma demonstração de redes bem-sucedida é aquela em que a equipe sabe exatamente o caminho que a informação fez, desde o fio até a aplicação.*
